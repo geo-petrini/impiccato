@@ -37,7 +37,7 @@ Supporta sia la modalità **grafica con immagini** che la modalità **ASCII art*
 
 ```
 .
-├── main.py
+├── impiccato.py
 ├── media/
 │   ├── 00.png
 │   ├── 01.png
@@ -66,7 +66,7 @@ pip install nicegui
 Avvia il programma con:
 
 ```bash
-python main.py
+python impiccato.py
 ```
 
 L’applicazione si aprirà in una finestra nativa grazie alle API `ui.run(native=True)`.
