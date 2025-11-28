@@ -58,7 +58,7 @@ Supporta sia la modalità **grafica con immagini** che la modalità **ASCII art*
   Installazione:
 
 ```bash
-pip install nicegui
+pip install -r requirements.txt
 ```
 
 ### ▶ Esecuzione
