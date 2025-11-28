@@ -12,7 +12,7 @@ Supporta sia la modalità **grafica con immagini** che la modalità **ASCII art*
 ![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/geo-petrini/impiccato)](https://github.com/geo-petrini/impiccato/graphs/commit-activity)
-[![GitHub issues](https://img.shields.io/github/issues/geo-petrini/nicegui?color=blue)](https://github.com/geo-petrini/impiccato/issues)
+[![GitHub issues](https://img.shields.io/github/issues/geo-petrini/impiccato?color=blue)](https://github.com/geo-petrini/impiccato/issues)
 [![GitHub forks](https://img.shields.io/github/forks/geo-petrini/impiccato)](https://github.com/geo-petrini/impiccato/network)
 [![GitHub stars](https://img.shields.io/github/stars/geo-petrini/impiccato)](https://github.com/geo-petrini/impiccato/stargazers)
 
