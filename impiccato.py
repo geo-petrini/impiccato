@@ -1,6 +1,19 @@
-import os
-from nicegui import ui, binding
+import os, sys
+from nicegui import ui, binding, native
 import random
+
+
+def resource_path(relative_path):
+    '''
+    data loader per pyinstall
+    infatti all'esecuzione pyinstall crea una cartella temporanea salvata in _MEIPASS
+    '''
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 # ============================================================
 # MODEL — Logica di gioco
@@ -13,7 +26,7 @@ class ImpiccatoGame:
     DRAW_MODE_TEXT = 'DRAW_MODE_TEXT'
     frame = 0
 
-    def __init__(self, mode=DRAW_MODE_PICS, word_list_path='data/60000_parole_italiane.txt'):
+    def __init__(self, mode=DRAW_MODE_PICS, word_list_path=resource_path('data/parole.txt')):
         self.word_list_path = word_list_path
         self.mode = mode
         self.reset()
@@ -69,8 +82,10 @@ class ImpiccatoGame:
         
 
     @staticmethod
-    def _draw_hangman_text(errors: int) -> str:
-        if errors > 10: errors = 10
+    def _draw_hangman_text(error: int) -> str:
+        if error < 0: error = 0
+        if error > 10: error = 10
+       
         frames = [
             r"""
             
@@ -167,31 +182,25 @@ _O_ |
 ____|____
             """,
         ]
-        return frames[errors]
+        return frames[error]
 
     @staticmethod
-    def _draw_hangman_pics(errors: int):
+    def _draw_hangman_pics(error: int):
         """
-        Restituisce un componente ui.image che mostra l'immagine
-        corrispondente allo stato dell'impiccato.
         Le immagini devono essere:
             media/00.png
             media/01.png
             ...
             media/10.png
         """
-        if errors < 0:
-            errors = 0
-        if errors > 10:
-            errors = 10
+        if error < 0: error = 0
+        if error > 10: error = 10
 
-        filename = f"media/{errors:02}.png"
+        filename = resource_path(f"media/{error:02}.png") #:02 formatta i numeri con leading zero
 
         if not os.path.exists(filename):
             return None
-            # return ui.label(f"[ERRORE] Immagine mancante: {filename}")
-
-        # return ui.image(filename).classes("w-64 h-auto")  # regola le dimensioni come vuoi    
+ 
         return filename
 
 # ============================================================
@@ -199,11 +208,11 @@ ____|____
 # ============================================================
 
 class ImpiccatoUI:
+    icon = '🎮'
+    title = "Gioco dell'Impiccato"
+    
     def __init__(self):
         self.game = ImpiccatoGame()
-        self.icon = '🎮'
-        self.title = "Gioco dell'Impiccato"
-
         with ui.column().classes("items-center justify-center w-full"):
             self.draw_elements()
 
@@ -313,19 +322,24 @@ class ImpiccatoUI:
         ui.notify("Nuova partita!", color="blue")
 
 
+@ui.page('/')
+def page():
+    iui = ImpiccatoUI()
+
 # ============================================================
 # MAIN
 # ============================================================
 
 if __name__ in {"__main__", "__mp_main__"}:
-    iui = ImpiccatoUI()
+    
     ui.run(
         reload=False, 
         native=True,  
         window_size=(400, 800), 
         fullscreen=False, 
-        favicon=iui.icon, 
-        title=iui.title
+        favicon=ImpiccatoUI.icon, 
+        title=ImpiccatoUI.title,
+        port=native.find_open_port()
         )
 
 
