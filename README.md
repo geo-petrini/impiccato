@@ -42,9 +42,16 @@ Supporta sia la modalità **grafica con immagini** che la modalità **ASCII art*
 │   ├── 00.png
 │   ├── 01.png
 │   └── ... 10.png
+├── model/
+│   ├── game.py
+├── ui/
+│   ├── base.py
+│   ├── pics.py
+│   ├── text.py
 ├── data/
 │   └── parole.txt
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ---
@@ -109,7 +116,7 @@ nicegui-pack
 ```
 
 Il file verrà generato nella cartella `dist` del progetto.
-Importante: cancellare la cartella `build` prima di ricompilarlo, altrimenti nicegui-pack restiuirà un errore.
+Importante: cancellare le cartelle `build` e `dist` prima di ricompilarlo, altrimenti nicegui-pack restiuirà un errore.
 
 ---
 
@@ -134,22 +141,6 @@ data/parole.txt
 ```
 
 Ogni parola deve essere su una riga.
-
-### Modalità di disegno
-
-Nel costruttore:
-
-```python
-ImpiccatoGame(mode=ImpiccatoGame.DRAW_MODE_PICS)
-```
-
-oppure
-
-```python
-ImpiccatoGame(mode=ImpiccatoGame.DRAW_MODE_TEXT)
-```
-
----
 
 ## 📜 Licenza
 

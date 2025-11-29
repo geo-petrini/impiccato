@@ -89,10 +89,10 @@ def page():
 if __name__ in {"__main__", "__mp_main__"}:
     
     ui.run(
-        # reload=False, 
-        # native=True,  
-        # window_size=(400, 800), 
-        # fullscreen=False, 
+        reload=False, 
+        native=True,  
+        window_size=(400, 800), 
+        fullscreen=False, 
         favicon=Impiccato.icon, 
         title=Impiccato.title,
         port=native.find_open_port()
