@@ -2,3 +2,5 @@
 /impiccato.spec
 /build
 /dist
+/.vscode
+*__pycache__
